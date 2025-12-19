@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+    ports:
+      - "5436:5432"  # Mantenemos tu acceso externo por el puerto 5436
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+
+  web:
+    image: odoo:17.0
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./data/odoo:/var/lib/odoo  # Datos de odoo
+      - ./addons:/mnt/extra-addons  # Modulos Personalizados
+      - ./config/odoo.conf:/etc/odoo/odoo.conf  #Arch de config
+    environment:
+      - HOST=db
+      - PORT=5432    # Odoo usa el puerto INTERNO (5432) para hablar con la DB
+      - USER=odoo
+      - PASSWORD=odoo

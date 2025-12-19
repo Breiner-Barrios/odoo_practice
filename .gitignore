@@ -1,0 +1,19 @@
+# Odoo / Docker
+data/
+backup.sql
+
+# Python
+__pycache__/
+*.pyc
+
+# Entornos
+.env
+.venv/
+
+# Node
+node_modules/
+
+# SO
+.DS_Store
+Thumbs.db
+
