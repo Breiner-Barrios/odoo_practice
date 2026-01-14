@@ -1,0 +1,34 @@
+<odoo>
+    <record id="view_segunda_prueba_list" model="ir.ui.view">
+        <field name="name">segunda.prueba.list</field>
+        <field name="model">segunda.prueba</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_segunda_prueba_form" model="ir.ui.view">
+        <field name="name">segunda.prueba.form</field>
+        <field name="model">segunda.prueba</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_segunda_prueba" model="ir.actions.act_window">
+        <field name="name">Segunda_prueba</field>
+        <field name="res_model">segunda.prueba</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_segunda_prueba_root" name="Segunda_prueba" sequence="10"/>
+    <menuitem id="menu_segunda_prueba_main" name="Registros" parent="menu_segunda_prueba_root" action="action_segunda_prueba" sequence="10"/>
+</odoo>
