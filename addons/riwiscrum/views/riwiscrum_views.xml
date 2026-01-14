@@ -5,6 +5,9 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
+                <field name="required_by"/>
+                <field name="accepted_by"/>
+                <field name="active"/>
             </list>
         </field>
     </record>
@@ -16,12 +19,25 @@
             <form>
                 <header>
                   <field name="status" widget="statusbar"/>
+                  <botton name="pasar_a_revision" confirm="¿Cambiar a Review" string="Review" type="object" class="oe_highlight" invisible ="status == 'review'"/>
                 </header>
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="required_by"/>
                     </group>
+                    <group>
+                        <field name="required_by"/>
+                        <field name="accepted_by"/>
+                        <field name="active"/>
+                    </group>
+                    <notebook>
+                        <page name="tarea" string="Tareas">
+                            
+                        </page>
+                        <page name="seguimiento" string="Seguimiento">
+                            
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
