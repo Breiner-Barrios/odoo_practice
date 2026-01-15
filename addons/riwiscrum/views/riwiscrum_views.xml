@@ -19,7 +19,13 @@
             <form>
                 <header>
                   <field name="status" widget="statusbar"/>
-                  <botton name="pasar_a_revision" confirm="¿Cambiar a Review" string="Review" type="object" class="oe_highlight" invisible ="status == 'review'"/>
+                  <button name='pasar_review' confirm="¿Desea cambiar el estado a review?" string="Review" type="object" class="oe_highlight" invisible="status == 'review'"/>
+                  <button name='reset_to_draft' confirm="¿Desea cambiar el estado a Borrador?" string="Borrador" type="object" class="oe_highlight" invisible="status == 'draft'"/>
+                  <button name='pasar_running' confirm="¿Desea cambiar el estado a En Progreso?" string="En Progreso" type="object" class="oe_highlight" invisible="status == 'running'"/>
+                  <button name='pasar_paused' confirm="¿Desea cambiar el estado a Pausado?" string="Pausado" type="object" class="oe_highlight" invisible="status == 'paused'"/>
+                  <button name='pasar_accepted' confirm ="¿Desea cambiar el estado a Aceptado?" string="Aceptado" type="object" class="oe_highlight" invisible="status == 'accepted'"/>
+                  <button name='pasar_refused' confirm="¿Desea cambiar el estado a Rechazado?" string="Rechazado" type="object" class="oe_highlight" invisible="status == 'refused'"/>
+                  <button name='pasar_cancel' confirm="¿Desea cambiar el estado a Cancelado?" string="Cancelado" type="object" class="oe_highlight" invisible="status == 'cancel'"/>
                 </header>
                 <sheet>
                     <group>
@@ -35,7 +41,18 @@
                             
                         </page>
                         <page name="seguimiento" string="Seguimiento">
-                            
+                            <group>
+                                <group>
+                                    <field name="fecha_review"/>
+                                    <field name="fecha_running"/>
+                                    <field name="fecha_paused"/>
+                                </group>
+                                <group>
+                                    <field name="fecha_accepted"/>
+                                    <field name="fecha_refused"/>
+                                    <field name="fecha_cancel"/>
+                                </group>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>

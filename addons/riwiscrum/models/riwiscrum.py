@@ -27,6 +27,52 @@ class Riwiscrum(models.Model):
     accepted_by = fields.Many2one("res.users",string="Aceptado por", required=False)
     active = fields.Boolean(string='Activo', default=True)
 
-    def pasar_a_revision(self):
+    fecha_review = fields.Datetime("Fecha a review", readonly=True)
+    fecha_running = fields.Datetime("Fecha a ejecución", readonly=True)
+    fecha_paused = fields.Datetime("Fecha a pausa", readonly=True)
+    fecha_accepted = fields.Datetime("Fecha a aceptado", readonly=True)
+    fecha_refused = fields.Datetime("Fecha a rechazado", readonly=True)
+    fecha_cancel = fields.Datetime("Fecha a cancelado", readonly=True)
+
+
+    def pasar_review(self):
         for record in self:
-            record.status = "review"
+            if record.status != "review":
+                record.status = "review"
+                record.fecha_review = fields.Datetime.now()
+            
+    def reset_to_draft(self):
+        for record in self:
+            if record.status != "draft":
+                record.status = "draft"
+
+    def pasar_running(self):
+        for record in self:
+            if record.status != "running":
+                record.status = "running"
+                record.fecha_running = fields.Datetime.now()
+
+    def pasar_paused(self):
+        for record in self:
+            if record.status != "paused":
+                record.status = "paused"
+                record.fecha_paused = fields.Datetime.now()
+
+    def pasar_accepted(self):
+        for record in self:
+            if record.status != "accepted":
+                record.status = "accepted"
+                record.fecha_accepted = fields.Datetime.now()
+
+    def pasar_refused(self):
+        for record in self:
+            if record.status != "refused":
+                record.status = "refused"
+                record.fecha_refused = fields.Datetime.now()
+
+    def pasar_cancel(self):
+        for record in self:
+            if record.status != "cancel":
+                record.status = "cancel"
+                record.fecha_cancel = fields.Datetime.now()
+
