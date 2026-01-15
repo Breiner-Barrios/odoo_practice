@@ -19,8 +19,8 @@
             <form>
                 <header>
                   <field name="status" widget="statusbar"/>
-                  <button name='pasar_review' confirm="¿Desea cambiar el estado a review?" string="Review" type="object" class="oe_highlight" invisible="status == 'review'"/>
                   <button name='reset_to_draft' confirm="¿Desea cambiar el estado a Borrador?" string="Borrador" type="object" class="oe_highlight" invisible="status == 'draft'"/>
+                  <button name='pasar_review' confirm="¿Desea cambiar el estado a review?" string="Review" type="object" class="oe_highlight" invisible="status == 'review'"/>
                   <button name='pasar_running' confirm="¿Desea cambiar el estado a En Progreso?" string="En Progreso" type="object" class="oe_highlight" invisible="status == 'running'"/>
                   <button name='pasar_paused' confirm="¿Desea cambiar el estado a Pausado?" string="Pausado" type="object" class="oe_highlight" invisible="status == 'paused'"/>
                   <button name='pasar_accepted' confirm ="¿Desea cambiar el estado a Aceptado?" string="Aceptado" type="object" class="oe_highlight" invisible="status == 'accepted'"/>
@@ -28,6 +28,11 @@
                   <button name='pasar_cancel' confirm="¿Desea cambiar el estado a Cancelado?" string="Cancelado" type="object" class="oe_highlight" invisible="status == 'cancel'"/>
                 </header>
                 <sheet>
+                <widget name="web_ribbon" title="EN PROGRESO" bg_color="text-bg-info" invisible="status != 'running'"/>
+                <widget name="web_ribbon" title="ACEPTADO" bg_color="text-bg-success" invisible="status != 'accepted'"/>
+                <widget name="web_ribbon" title="RECHAZADO" bg_color="text-bg-danger" invisible="status != 'refused'"/>
+                <widget name="web_ribbon" title="PAUSADO" bg_color="text-bg-warning" invisible="status != 'paused'"/>
+                <widget name="web_ribbon" title="CANCELADO" bg_color="text-bg-danger" invisible="status != 'cancel'"/>
                     <group>
                         <field name="name"/>
                     </group>
