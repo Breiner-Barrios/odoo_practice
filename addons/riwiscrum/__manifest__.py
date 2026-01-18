@@ -8,6 +8,8 @@
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
+
+        'sequences/ir_sequence_data.xml',
         'views/riwiscrum_views.xml',
     ],
     'installable': True,

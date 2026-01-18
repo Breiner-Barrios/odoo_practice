@@ -4,7 +4,9 @@
         <field name="model">riwiscrum</field>
         <field name="arch" type="xml">
             <list>
+                <field name="code"/>
                 <field name="name"/>
+                <field name="user_id"/>
                 <field name="required_by"/>
                 <field name="accepted_by"/>
                 <field name="status"/>
@@ -33,12 +35,19 @@
                     <widget name="web_ribbon" title="RECHAZADO" bg_color="text-bg-danger" invisible="status != 'refused'"/>
                     <widget name="web_ribbon" title="PAUSADO" bg_color="text-bg-warning" invisible="status != 'paused'"/>
                     <widget name="web_ribbon" title="CANCELADO" bg_color="text-bg-danger" invisible="status != 'cancel'"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="code"/>
+                        </h1>
+                    </div>
                     <group>
                         <field name="name"/>
                     </group>
                     <group>
                         <field name="required_by"/>
                         <field name="accepted_by"/>
+                        <field name="user_id"/>
+                        <field name="create_date" readonly="1"/>
                         <field name="active"/>
                     </group>
                     <notebook>
