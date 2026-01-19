@@ -4,10 +4,12 @@
         <field name="model">riwiscrum</field>
         <field name="arch" type="xml">
             <list>
+                <field name="code"/>
                 <field name="name"/>
+                <field name="user_id"/>
                 <field name="required_by"/>
                 <field name="accepted_by"/>
-                <field name="active"/>
+                <field name="status"/>
             </list>
         </field>
     </record>
@@ -28,22 +30,41 @@
                   <button name='pasar_cancel' confirm="¿Desea cambiar el estado a Cancelado?" string="Cancelado" type="object" class="oe_highlight" invisible="status == 'cancel'"/>
                 </header>
                 <sheet>
-                <widget name="web_ribbon" title="EN PROGRESO" bg_color="text-bg-info" invisible="status != 'running'"/>
-                <widget name="web_ribbon" title="ACEPTADO" bg_color="text-bg-success" invisible="status != 'accepted'"/>
-                <widget name="web_ribbon" title="RECHAZADO" bg_color="text-bg-danger" invisible="status != 'refused'"/>
-                <widget name="web_ribbon" title="PAUSADO" bg_color="text-bg-warning" invisible="status != 'paused'"/>
-                <widget name="web_ribbon" title="CANCELADO" bg_color="text-bg-danger" invisible="status != 'cancel'"/>
+                    <widget name="web_ribbon" title="EN PROGRESO" bg_color="text-bg-info" invisible="status != 'running'"/>
+                    <widget name="web_ribbon" title="ACEPTADO" bg_color="text-bg-success" invisible="status != 'accepted'"/>
+                    <widget name="web_ribbon" title="RECHAZADO" bg_color="text-bg-danger" invisible="status != 'refused'"/>
+                    <widget name="web_ribbon" title="PAUSADO" bg_color="text-bg-warning" invisible="status != 'paused'"/>
+                    <widget name="web_ribbon" title="CANCELADO" bg_color="text-bg-danger" invisible="status != 'cancel'"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="code"/>
+                        </h1>
+                    </div>
                     <group>
                         <field name="name"/>
                     </group>
                     <group>
                         <field name="required_by"/>
                         <field name="accepted_by"/>
+                        <field name="user_id"/>
+                        <field name="create_date" readonly="1"/>
                         <field name="active"/>
                     </group>
                     <notebook>
                         <page name="tarea" string="Tareas">
-                            
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="code"/>
+                                    <field name="tipo_tarea"/>
+                                    <field name="descripcion"/>
+                                    <field name="asignado_a_ids" widget="many2many_tags"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="prioridad" widget="priority"/>
+                                    <field name="tiempo_estimado" widget="float_time"/>
+                                    <field name="status"/>
+                                </list>
+                            </field>
                         </page>
                         <page name="seguimiento" string="Seguimiento">
                             <group>

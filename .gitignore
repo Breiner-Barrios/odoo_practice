@@ -1,5 +1,5 @@
 # Odoo / Docker
-data/
+/data
 backup.sql
 
 # Python
