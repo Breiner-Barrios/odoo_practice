@@ -1,10 +1,11 @@
-from odoo import models, fields
+from odoo import models, fields, api, _
 
 class RiwiscrumLine(models.Model):
     _name = 'riwiscrum.line'
     _description = 'Líneas de Tarea Riwiscrum'
 
     riwiscrum_id = fields.Many2one('riwiscrum', string='Referencia Riwiscrum', ondelete='cascade')
+    code = fields.Char(string='Task ID', required=True, copy=False, readonly=True, default=lambda self: _('New'))
     
     tipo_tarea = fields.Selection([
         ('back', 'Back'),
@@ -34,3 +35,10 @@ class RiwiscrumLine(models.Model):
     
     descripcion = fields.Text(string='Descripción')
     tiempo_estimado = fields.Float(string='Tiempo Estimado (Horas)')
+
+    @api.model
+    def create(self, vals):
+        if vals.get('code', _('New')) == _('New'):
+            vals['code'] = self.env['ir.sequence'].next_by_code('riwiscrum.task.sequence') or _('New')
+        result = super(RiwiscrumLine, self).create(vals)
+        return result

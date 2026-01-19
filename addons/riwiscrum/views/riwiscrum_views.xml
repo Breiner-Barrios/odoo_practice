@@ -54,12 +54,14 @@
                         <page name="tarea" string="Tareas">
                             <field name="line_ids">
                                 <list editable="bottom">
+                                    <field name="code"/>
                                     <field name="tipo_tarea"/>
                                     <field name="descripcion"/>
                                     <field name="asignado_a_ids" widget="many2many_tags"/>
                                     <field name="start_date"/>
                                     <field name="end_date"/>
                                     <field name="prioridad" widget="priority"/>
+                                    <field name="tiempo_estimado" widget="float_time"/>
                                     <field name="status"/>
                                 </list>
                             </field>
